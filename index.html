@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Yan's Practical</title>
-    <!-- Google Fonts: Press Start 2P -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #000;
-            color: #fff; /* White text for better contrast */
+            color: #fff;
             font-family: 'Press Start 2P', cursive, sans-serif;
             margin: 0;
             padding: 0;
@@ -70,7 +69,6 @@
         <div class="typewriter" id="typewriter"></div>
     </div>
     <script>
-        // Typewriter effect with multiple messages
         const messages = [
             "We live we love we lie",
             "Does paulrubsfeet have admin access?",
@@ -82,6 +80,8 @@
             "join the darkuma appreciation society bitchh",
             "PRESIDENTAL ELECTIONS ON JUNE 13TH",
             "is it gay to like femboys though?",
+            "im a fucking homophobic",
+            "brodie if you're homophobic why did you even put a pride flag on the website stupid ass faggoted ass ugly ass bitch ass dickhead ass fucking stupid retaded ass shitty face fucking faggot cunt you fucking whore nigger",
         ];
         const typewriter = document.getElementById('typewriter');
         let msgIndex = 0;
@@ -98,7 +98,7 @@
                     charIndex = 0;
                     msgIndex = (msgIndex + 1) % messages.length;
                     type();
-                }, 1200); // Pause before next message
+                }, 1200);
             }
         }
         type();
