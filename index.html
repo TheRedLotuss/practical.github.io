@@ -114,6 +114,8 @@
         }
     }
     typeWriter();
+
+    // --- SNOW EFFECT WITH PERFORMANCE FIXES ---
     const canvas = document.getElementById('snow');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth;
@@ -147,7 +149,7 @@
             ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(255,255,255,${flake.opacity})`;
             ctx.shadowColor = "#fff";
-            ctx.shadowBlur = 8;
+            ctx.shadowBlur = 2; // Reduced from 8 for performance
             ctx.fill();
         }
         ctx.restore();
@@ -165,7 +167,7 @@
     }
 
     function snow() {
-        if (snowflakes.length < 120) createSnowflakes();
+        if (snowflakes.length < 50) createSnowflakes(); // Reduced from 120 for performance
         moveSnowflakes();
         drawSnowflakes();
         requestAnimationFrame(snow);
@@ -180,6 +182,6 @@
         }
         window.addEventListener('click', playAudio);
     });
-    </script>
+</script>
 </body>
 </html>
