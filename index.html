@@ -1,107 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Yan's Practical</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>Santa Cruz Government School Class of 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Press Start 2P', cursive, sans-serif;
+            background: #000;
             margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow-x: hidden;
         }
-        .profile-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 10px;
+        #snow {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
         }
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #222;
-            background: #111;
+        h1, .gallery, .audio-player-div {
+            position: relative;
+            z-index: 1;
         }
-        .top-image {
-            display: block;
-            margin: 40px auto 20px auto;
-            max-width: 90vw;
-            height: auto;
-        }
-        .content {
+        h1 {
+            color: #fff;
             text-align: center;
-            font-size: 1.1em;
+            margin-top: 40px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
         }
-        .typewriter {
-            font-family: 'Press Start 2P', cursive, sans-serif;
-            font-size: 0.7em;
-            color: #f0f5f0;
-            display: inline-block;
-            border-right: 2px solid #f5f7f5;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 3s steps(30, end), blink-caret 0.7s step-end infinite;
-            margin-top: 10px;
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 40px 0;
         }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+        .gallery img {
+            border: 4px solid #fff;
+            border-radius: 8px;
+            width: 220px;
+            height: 150px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s;
+            background: #222;
         }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #f4f7f4; }
+        .gallery img:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+    <canvas id="snow"></canvas>
+    <h1>Class of 2025 Gallery<br>
+        <span style="font-size:0.5em;font-weight:400;">made by Daniel/Yan 2025</span>
+    </h1>
+    <div id="typewriter" style="
+        font-family: 'Montserrat', Arial, sans-serif;
+        color: #fff;
+        text-align: center;
+        font-size: 1.3em;
+        margin-top: 10px;
+        min-height: 2em;
+        letter-spacing: 1px;
+    "></div>
+    <div class="gallery">
+        <img src="462578632_1234679090925166_8201998887287458769_n.jpg" alt="Gallery Image 1">
+        <img src="477167041_1333373557814901_5065035409111890325_n.jpg" alt="Gallery Image 2">
+        <img src="488810042_1215420600095452_7978924385537851832_n.jpg" alt="Gallery Image 3">
+        <img src="495072078_1268345318158722_3545310983930942377_n.jpg" alt="Gallery Image 4">
+        <img src="495072125_1477410913241653_7540503528661536631_n.jpg" alt="Gallery Image 5">
+        <img src="495075905_539589072433932_4751820372847611170_n.jpg" alt="Gallery Image 6">
+        <img src="495076838_632048399900276_4258623237308032913_n.jpg" alt="Gallery Image 7">
+        <img src="496510179_738034685563694_5564624707593113935_n.jpg" alt="Gallery Image 8">
+        <img src="496511621_593798633310293_4148248479746982295_n.jpg" alt="Gallery Image 9">
+        <img src="496516205_2218613811907204_4198282442240050247_n.jpg" alt="Gallery Image 10">
+        <img src="496512244_588445457630590_3228008077635325467_n.jpg"  alt="Gallery Image 11">
     </div>
-    <img src="gay.gif" alt="Top Image" class="top-image">
-    <div class="content">
-        <h1>Welcome to Yan's Practical</h1>
-        <p>you smell good today bbg.<3 </p>
-        <div class="typewriter" id="typewriter"></div>
-    </div>
+    <audio id="bg-music"
+        src="cult member - u weren't here i really miss you (slowed x reverb).mp3"
+        type="audio/mp3"
+        autoplay
+        loop
+        style="display:none">
+        Your browser does not support the audio element.
+    </audio>
     <script>
-        const messages = [
-            "We live we love we lie",
-            "Does paulrubsfeet have admin access?",
-            "Long live FairyTale bruh",
-            "I love you so much prvnic",
-            "fucking hell",
-            "fuck havoc",
-            "i love daddy dar so much lmao!!!!!!!!!",
-            "join the darkuma appreciation society bitchh",
-            "PRESIDENTAL ELECTIONS ON JUNE 13TH",
-            "is it gay to like femboys though?",
-            "im a fucking homophobic",
-            "brodie if you're homophobic why did you even put a pride flag on the website stupid ass faggoted ass ugly ass bitch ass dickhead ass fucking stupid retaded ass shitty face fucking faggot cunt you fucking whore nigger",
-        ];
-        const typewriter = document.getElementById('typewriter');
-        let msgIndex = 0;
-        let charIndex = 0;
+    const typewriterMessages = [
+        "Welcome to our memories. Enjoy the gallery and music!",
+        "I think Heidy does deserve valedictorian.",
+        "Best Class ever, Class of 2025!",
+        "Good luck to all of us in the future!"
+    ];
+    const typewriterElem = document.getElementById('typewriter');
+    let msgIndex = 0;
+    let typeIndex = 0;
 
-        function type() {
-            if (charIndex < messages[msgIndex].length) {
-                typewriter.textContent += messages[msgIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, 60);
-            } else {
-                setTimeout(() => {
-                    typewriter.textContent = "";
-                    charIndex = 0;
-                    msgIndex = (msgIndex + 1) % messages.length;
-                    type();
-                }, 1200);
+    function typeWriter() {
+        const currentMsg = typewriterMessages[msgIndex];
+        if (typeIndex <= currentMsg.length) {
+            typewriterElem.textContent = currentMsg.slice(0, typeIndex) + (typeIndex % 2 === 0 ? '|' : '');
+            typeIndex++;
+            setTimeout(typeWriter, 60);
+        } else {
+            typewriterElem.textContent = currentMsg;
+            setTimeout(() => {
+                typeIndex = 0;
+                msgIndex = (msgIndex + 1) % typewriterMessages.length;
+                setTimeout(typeWriter, 1000); 
+            }, 1200);
+        }
+    }
+    typeWriter();
+    const canvas = document.getElementById('snow');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let snowflakes = [];
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function createSnowflakes() {
+        const x = Math.random() * width;
+        const y = Math.random() * -height;
+        const radius = Math.random() * 2 + 1;
+        const speed = Math.random() * 2.5 + 1.5; // 1.5 to 4.0
+        const opacity = Math.random() * 0.5 + 0.5;
+        snowflakes.push({x, y, radius, speed, opacity});
+    }
+
+    function drawSnowflakes() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+        for (let flake of snowflakes) {
+            ctx.beginPath();
+            ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${flake.opacity})`;
+            ctx.shadowColor = "#fff";
+            ctx.shadowBlur = 8;
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    function moveSnowflakes() {
+        for (let flake of snowflakes) {
+            flake.y += flake.speed;
+            flake.x += Math.sin(flake.y / 40) * 0.5;
+            if (flake.y > height) {
+                flake.y = Math.random() * -10;
+                flake.x = Math.random() * width;
             }
         }
-        type();
+    }
+
+    function snow() {
+        if (snowflakes.length < 120) createSnowflakes();
+        moveSnowflakes();
+        drawSnowflakes();
+        requestAnimationFrame(snow);
+    }
+    snow();
+    
+    window.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('bg-music');
+        function playAudio() {
+            audio.play().catch(()=>{});
+            window.removeEventListener('click', playAudio);
+        }
+        window.addEventListener('click', playAudio);
+    });
     </script>
 </body>
 </html>
